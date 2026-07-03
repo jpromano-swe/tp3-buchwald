@@ -1,13 +1,10 @@
-import geocoding_for_kml
-import xml.dom.minidom
-import sys
 
-def crearKML(nombreArchivo, orden,comando): #refactorizar en menos lineas
-    with open("viaje.kml", "w", encoding="utf-8") as archivo:
+def crearKML(nombreArchivo, orden): #refactorizar en menos lineas
+    with open("{nombreArchivo}.kml", "w", encoding="utf-8") as archivo:
         archivo.write('<?xml version="1.0" encoding="UTF-8"?>')
         archivo.write('<kml xmlns="http://earth.google.com/kml/2.1">')
         archivo.write('<Document>')
-        archivo.write('<name>{comando}</name>')
+        archivo.write('<name>{nombreArchivo}</name>')
         for v in orden:
             archivo.write('<Placemark>')
             archivo.write('<name>{v[0]}</name>')
@@ -20,7 +17,7 @@ def crearKML(nombreArchivo, orden,comando): #refactorizar en menos lineas
             sig = orden[i+1]
             archivo.write('<Placemark>')
             archivo.write('<LineString>')
-            archivo.write('<coordinates>{actual[0]},{actual[1]} {sig[0]},{sig[1]}</coordinates>')
+            archivo.write('<coordinates>{actual[1]},{actual[2]} {sig[1]},{sig[2]}</coordinates>')
             archivo.write('</LineString>')
             archivo.write('</Placemark>')   
         archivo.write('</Document>')
@@ -30,4 +27,4 @@ def crearKML(nombreArchivo, orden,comando): #refactorizar en menos lineas
 
 
 def exportarKML(orden,nombreArchivo):
-    kml = crearKML('viaje.kml',orden,nombreArchivo)
+    kml = crearKML(nombreArchivo,orden)
