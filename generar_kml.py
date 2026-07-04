@@ -5,7 +5,11 @@ def crearKML(nombreArchivo, orden,coordenadas,texto):
         archivo.write('<kml xmlns="http://earth.google.com/kml/2.1">')
         archivo.write('<Document>')
         archivo.write(f'<name>{nombreArchivo}</name>')
+        visitados = set()
         for v in orden:
+            if v in visitados:
+                continue
+            visitados.add(v)
             archivo.write('<Placemark>')
             archivo.write(f'<name>{v}</name>')
             archivo.write('<Point>')
