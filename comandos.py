@@ -1,5 +1,5 @@
 from camino_minimo import camino_minimo
-from generar_kml import exportar_kml
+from generar_kml import exportarKML
 from generar_pajek import crearPajek
 from hierholzer import viaje_hierholzer
 from mst import mst_prim
