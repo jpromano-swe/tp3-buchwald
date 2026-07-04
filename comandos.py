@@ -55,7 +55,7 @@ class Comandos:
             return ERROR_RECORRIDO
 
         recorrido, peso_total = resultado
-        exportar_kml(archivo, recorrido, self.coordenadas, f"Camino desde {origen} hacia {destino}")
+        exportarKML(archivo, recorrido, self.coordenadas, f"Camino desde {origen} hacia {destino}")
         return formatear_recorrido(recorrido, peso_total)
 
     def ejecutar_viaje(self, parametros):
@@ -69,7 +69,7 @@ class Comandos:
             return ERROR_RECORRIDO
 
         recorrido, peso_total = resultado
-        exportar_kml(archivo, recorrido, self.coordenadas, f"Viaje desde {origen}")
+        exportarKML(archivo, recorrido, self.coordenadas, f"Viaje desde {origen}")
         return formatear_recorrido(recorrido, peso_total)
 
     def ejecutar_itinerario(self, parametros):
