@@ -37,10 +37,10 @@ def ciclo_euleriano_hierholzer(grafo, origen):
         return None
 
     grafo_aux = copiar_grafo(grafo)
-    ciclo = _hierholzer(grafo_aux, origen)
+    ciclo = hierholzer(grafo_aux, origen)
 
     if len(ciclo) == cantidad_aristas + 1:
-        return ciclo, _peso_recorrido(grafo, ciclo)
+        return ciclo, peso_recorrido(grafo, ciclo)
     return None
 
 
@@ -86,7 +86,7 @@ def copiar_grafo(grafo):
     return copia
 
 
-def _hierholzer(grafo, origen):
+def hierholzer(grafo, origen):
     pila = [origen]
     ciclo = []
 
@@ -104,7 +104,7 @@ def _hierholzer(grafo, origen):
     return ciclo
 
 
-def _peso_recorrido(grafo, recorrido):
+def peso_recorrido(grafo, recorrido):
     peso_total = 0
     for i in range(len(recorrido) - 1):
         peso_total += grafo.peso_arista(recorrido[i], recorrido[i + 1])
