@@ -50,12 +50,12 @@ class Comandos:
             return ERROR_RECORRIDO
 
         origen, destino, archivo = partes
-        resultado = camino_minimo(self.grafo, origen, destino)
+        resultado = camino_minimo(self.grafo, origen, destino, self.coordenadas)
         if resultado is None:
             return ERROR_RECORRIDO
 
         recorrido, peso_total = resultado
-        exportarKML(archivo, recorrido, self.coordenadas, f"Camino desde {origen} hacia {destino}")
+        exportarKML(archivo, recorrido, f"Camino desde {origen} hacia {destino}")
         return formatear_recorrido(recorrido, peso_total)
 
     def ejecutar_viaje(self, parametros):

@@ -4,8 +4,8 @@ def cmp_min(arista1, arista2):
   return arista2[0] - arista1[0]
 
 
-def camino_minimo(grafo, origen, destino):
-  resultado = camino_minimo_dijkstra(grafo, origen, destino)
+def camino_minimo(grafo, origen, destino, coordenadas):
+  resultado = camino_minimo_dijkstra(grafo, origen, destino, coordenadas)
   if resultado is None:
     return None
 
@@ -23,10 +23,9 @@ def camino_minimo(grafo, origen, destino):
   return camino, dist[destino]
 
 
-def camino_minimo_dijkstra(grafo, origen, destino):
+def camino_minimo_dijkstra(grafo, origen, destino,coordenadas):
   if not grafo.verificar_vertice(origen) or not grafo.verificar_vertice(destino):
     return None
-
   dist = {}
   padre = {}
   for v in grafo.obtener_vertices():
@@ -48,5 +47,6 @@ def camino_minimo_dijkstra(grafo, origen, destino):
         dist[w] = distancia_por_aca
         padre[w] = v
         q.encolar((dist[w], w))
+    
 
   return padre, dist
