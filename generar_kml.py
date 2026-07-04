@@ -1,5 +1,5 @@
 
-def crearKML(nombreArchivo, orden,coordenadas):
+def crearKML(nombreArchivo, orden,coordenadas,texto):
     with open(f"{nombreArchivo}", "w", encoding="utf-8") as archivo:
         archivo.write('<?xml version="1.0" encoding="UTF-8"?>')
         archivo.write('<kml xmlns="http://earth.google.com/kml/2.1">')
@@ -23,4 +23,4 @@ def crearKML(nombreArchivo, orden,coordenadas):
         archivo.write('</Document>')
         archivo.write('</kml>')
 def exportarKML(nombreArchivo, orden, coordenadas, texto):
-    crearKML(nombreArchivo,orden,coordenadas)
+    crearKML(nombreArchivo,orden,coordenadas,texto)
