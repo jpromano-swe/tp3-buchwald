@@ -55,8 +55,14 @@ def separar_parametros(parametros, cantidad):
         return None
     return partes
 
+def formatear_numero(numero):
+    if numero == int(numero):
+        return str(int(numero))
+    return str(numero)
+
+
 def formatear_recorrido(recorrido, peso_total):
-    return f"{' -> '.join(recorrido)}\nTiempo total: {peso_total}"
+    return f"{' -> '.join(recorrido)}\nTiempo total: {formatear_numero(peso_total)}"
 
 
 def cargar_recomendaciones(grafo_mapa, archivo):
