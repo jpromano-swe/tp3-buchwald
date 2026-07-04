@@ -1,5 +1,5 @@
 from grafos import Grafo
-from tdas import cola
+from tdas.cola import ColaEnlazada
 import generar_kml
 #Adam
 def grados_entrada(grafo):
