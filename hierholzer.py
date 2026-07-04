@@ -37,22 +37,11 @@ def ciclo_euleriano_hierholzer(grafo, origen):
         return None
 
     grafo_aux = copiar_grafo(grafo)
-    ciclo = []
-    _hierholzer(grafo_aux, origen, ciclo)
-    ciclo.reverse()
+    ciclo = _hierholzer(grafo_aux, origen)
 
     if len(ciclo) == cantidad_aristas + 1:
         return ciclo, _peso_recorrido(grafo, ciclo)
     return None
-
-
-def _dfs(grafo, v, visitados, padres, orden):
-    for w in grafo.obtener_adyacente(v):
-        if w not in visitados:
-            visitados.add(w)
-            padres[w] = v
-            orden[w] = orden[v] + 1
-            _dfs(grafo, w, visitados, padres, orden)
 
 
 def dfs(grafo, origen):
@@ -62,7 +51,17 @@ def dfs(grafo, origen):
     padres[origen] = None
     orden[origen] = 0
     visitados.add(origen)
-    _dfs(grafo, origen, visitados, padres, orden)
+
+    pila = [origen]
+    while pila:
+        v = pila.pop()
+        for w in grafo.obtener_adyacente(v):
+            if w not in visitados:
+                visitados.add(w)
+                padres[w] = v
+                orden[w] = orden[v] + 1
+                pila.append(w)
+
     return padres, orden
 
 
@@ -87,12 +86,22 @@ def copiar_grafo(grafo):
     return copia
 
 
-def _hierholzer(grafo, v, ciclo):
-    while grafo.obtener_adyacente(v):
-        w = grafo.obtener_adyacente(v)[0]
-        grafo.borrar_arista(v, w)
-        _hierholzer(grafo, w, ciclo)
-    ciclo.append(v)
+def _hierholzer(grafo, origen):
+    pila = [origen]
+    ciclo = []
+
+    while pila:
+        v = pila[-1]
+        adyacentes = grafo.obtener_adyacente(v)
+        if adyacentes:
+            w = adyacentes[0]
+            grafo.borrar_arista(v, w)
+            pila.append(w)
+        else:
+            ciclo.append(pila.pop())
+
+    ciclo.reverse()
+    return ciclo
 
 
 def _peso_recorrido(grafo, recorrido):
